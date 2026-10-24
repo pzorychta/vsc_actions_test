@@ -17,7 +17,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Sprawdzamy wersję Python
-        run: python -V
+        run: python3 -V
 
       - name: Wyświetl aktualny katalog roboczy
         run: pwd
@@ -38,4 +38,4 @@ jobs:
           python-version: '3.16'
 
       - name: Sprawdzamy wersję Python po instalacji
-        run: python -V
+        run: python3 -V
