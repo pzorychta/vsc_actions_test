@@ -10,7 +10,21 @@ on:
   schedule:
     - cron: '*/2 * * * *'
   workflow_dispatch:
-    
+    inputs:
+      wybor_klienta:
+        description: 'Wybierz klienta:'
+        required: true
+        default: 'Contoso'
+        type: choice
+        options:
+          - Contoso
+          - Nwtraders
+          - Arcacorp
+      nazwa_operatora:
+        description: 'Przemyslaw Zorychta:'
+        required: false
+        type: string
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -34,3 +48,10 @@ jobs:
 
       - name: Wyświetl listę plików po checkout
         run: ls -la
+
+      - name: Testujemy zmienne input
+        run: |
+          echo "Wybrałeś klienta: $KLIENT"
+          echo "Podane imię i nazwisko: ${{ inputs.nazwa_operatora }}"
+        env:
+          KLIENT: ${{ inputs.wybor_klienta }}
