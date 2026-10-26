@@ -90,7 +90,10 @@ jobs:
         id: zmienna_jadro
         run: |
           JADRO=$(uname -a)
-          echo "Jądro w systemie to $JADRO" >> $GITHUB_OUTPUT
+          echo "Jądro w systemie to $JADRO"
+          echo "JADRO<<EOF" >> $GITHUB_OUTPUT
+          echo "$JADRO" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Wyświetl zawartość zmiennej jądro
         run: echo "Jądro w systemie to $wersja_jadro"
