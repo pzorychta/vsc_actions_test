@@ -25,3 +25,15 @@ jobs:
       - name: Inny komunikat dla innego jądra
         if: ${{ !startsWith(steps.jadro_kroku.outputs.KERNEL, '6.') }}
         run: echo "Wykryto jądro inne niż 6.x — to zadanie zostało wykonane zamiast poprzedniego."
+
+      - name: Uruchom zawsze
+        if: always()
+        run: echo "Zawsze"
+
+      - name: Uruchom po awarii
+        if: failure()
+        run: echo "Po awarii"
+
+      - name: Uruchom po sukcesie
+        if: success()
+        run: echo "Po sukcesie"
