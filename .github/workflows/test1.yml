@@ -87,12 +87,15 @@ jobs:
       #     ls -lh "$NFT_DIR"
 
       - name: Tworzenie zmiennej z wersją jądra systemu operacyjnego
+        id: zmienna_jadro
         run: |
           JADRO=$(uname -a)
           echo "Jądro w systemie to $JADRO"
 
       - name: Wyświetl zawartość zmiennej jądro
-        run: echo "Jądro w systemie to $JADRO"
+        run: echo "Jądro w systemie to $wersja_jadro"
+        env:
+          wersja_jadro: ${{ steps.zmienna_jadro.outputs.JADRO }}
 
       - name: Wyświetl listę plików po checkout
         run: ls -la
