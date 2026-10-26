@@ -33,7 +33,8 @@ jobs:
   # This workflow contains a single job called "build"
   moje_pierwsze_zadanie:
     # The type of runner that the job will run on
-    runs-on: debian13_runner1
+#    runs-on: debian13_runner1
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -45,6 +46,9 @@ jobs:
 
       - name: Wyświetl listę plików
         run: ls -la
+
+      - name: Pobierz źródła nftables
+        run: wget https://www.netfilter.org/projects/nftables/files/nftables-1.0.6.1.tar.xz
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
