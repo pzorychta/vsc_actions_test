@@ -1,0 +1,27 @@
+name: Przykladowy warunkowy przeplyw
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testy_warunku:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wyświetl podstawowe informacje
+        run: |
+          echo "Uruchomiono przepływ GitHub Actions"
+          echo "Aktualna data: $(date)"
+
+      - name: Pobierz wersję jądra
+        id: jadro_kroku
+        run: |
+          KERNEL=$(uname -r)
+          echo "KERNEL=$KERNEL" >> $GITHUB_OUTPUT
+
+      - name: Wyświetl informację, jeśli jądro jest 6.x
+        if: startsWith(steps.jadro_kroku.outputs.KERNEL, '6.')
+        run: echo "Wykryto jądro 6.x - warunek został spełniony, i zadanie zostało wykonane!"
+
+      - name: Inny komunikat dla innego jądra
+        if: ${{ !startsWith(steps.jadro_kroku.outputs.KERNEL, '6.') }}
+        run: echo "Wykryto jądro inne niż 6.x — to zadanie zostało wykonane zamiast poprzedniego."
