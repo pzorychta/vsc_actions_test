@@ -43,7 +43,7 @@ jobs:
   drugie_zadanie:
     runs-on: ubuntu-latest
     needs: testy_warunku
-    if: always()
+    if: failure()
     steps:
       - name: Drugie zadanie
         run: echo "Drugie zadanie wykonane"
