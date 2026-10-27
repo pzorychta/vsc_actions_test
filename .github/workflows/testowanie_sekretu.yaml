@@ -18,3 +18,13 @@ jobs:
 
       - name: Test sekretu środowiska
         run: echo "Sekret środowiska to ${{ secrets.sekret_srodowiska }}"
+
+      - uses: actions/checkout@v7
+
+      - name: Odszyfrowanie pliku
+        run: |
+          mkdir $HOME/secrets
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.HASLO_GPG1 }}" --output $HOME/secrets/sekret.json sekret.json.gpg
+
+      - name: Podgląd pliku odszyfrowanego
+        run: cat $HOME/secrets/sekret.json
