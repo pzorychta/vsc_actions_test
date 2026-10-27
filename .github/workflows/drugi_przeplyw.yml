@@ -6,6 +6,8 @@ on:
 jobs:
   testy_warunku:
     runs-on: ubuntu-latest
+    outputs:
+      jadro: ${{ steps.jadro_kroku.outputs.KERNEL }}
     steps:
       - name: Wyświetl podstawowe informacje
         run: |
@@ -45,3 +47,8 @@ jobs:
     steps:
       - name: Drugie zadanie
         run: echo "Drugie zadanie wykonane"
+
+      - name: Wyświetl jądro z zadania testy_warunku
+        run: echo "Jądro w zadaniu testy_warunku to $JADRO_TESTY"
+        env:
+          JADRO_TESTY: ${{ needs.testy_warunku.outputs.jadro }}
