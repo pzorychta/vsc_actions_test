@@ -1,0 +1,15 @@
+name: Testowanie sekretu
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testy_sekretu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test sekretu repozytorium
+        run: echo "Sekret repozytorium to ${{ secrets.Testowy_sekret_repo }}"
+
+      - name: Test zmiennej repozytorium
+        run: echo "Zmienna repozytorium to ${{ vars.Testowa_zmienna_repo }}"
