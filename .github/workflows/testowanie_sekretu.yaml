@@ -7,7 +7,7 @@ jobs:
   testy_sekretu:
     runs-on: ubuntu-latest
     environment:
-      name: 'Produkcyjne'
+      name: 'Testowe'
 
     steps:
       - name: Test sekretu repozytorium
