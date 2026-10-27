@@ -20,9 +20,6 @@ jobs:
           KERNEL=$(uname -r)
           echo "KERNEL=$KERNEL" >> $GITHUB_OUTPUT
 
-      - name: Celowy błąd
-        run: exit 1
-
       - name: Wyświetl informację, jeśli jądro jest 6.x
         if: startsWith(steps.jadro_kroku.outputs.KERNEL, '6.')
         run: echo "Wykryto jądro 6.x - warunek został spełniony, i zadanie zostało wykonane!"
