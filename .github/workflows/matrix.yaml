@@ -9,9 +9,17 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}  # Uruchom zadanie na systemie zdefiniowanym w macierzy matrix
     strategy:
+      fail-fast: false  # Wszystkie zadania z macierzy wykonają się do końca, nawet jeśli inne zakończą się niepowodzeniem
+      max-parallel: 3  # Najwyżej 3 zadania z macierzy wykonywane równocześnie
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]  # Lista systemów operacyjnych do testowania
         python-version: ['3.14', '3.9', '3.1']  # Lista wersji Pythona do testowania
+        include:
+          - os: ubuntu-latest  # Dodatkowa kombinacja, która nie wynika z list powyżej
+            python-version: '3.8'
+        exclude:
+          - os: windows-latest  # Wykluczenie kombinacji Windows z Pythonem 3.9
+            python-version: '3.9'
 
     steps:
       - uses: actions/checkout@v7  # Pobranie zawartości repozytorium git
